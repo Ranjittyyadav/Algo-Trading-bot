@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bot Dashboard - Real-time Signals & Trades</title>
+    <link rel="stylesheet" href="styles_enhanced.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Trading Bot Dashboard</h1>
+            <p>Real-time signals, trades, and performance metrics</p>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-card">
+                <div class="status-label">Status</div>
+                <div class="status-value">
+                    <span class="live-indicator"></span><span id="status-text">LIVE</span>
+                </div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Account Balance</div>
+                <div class="status-value" id="account-balance">-</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Floating P&L</div>
+                <div class="status-value" id="floating-pnl">-</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Open Positions</div>
+                <div class="status-value info" id="open-positions">0</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Win Rate</div>
+                <div class="status-value" id="win-rate">0%</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Total Trades</div>
+                <div class="status-value" id="total-trades">0</div>
+            </div>
+        </div>
+
+        <!-- Real-time Signals Section -->
+        <div class="panel" style="margin-bottom: 25px; border-left: 5px solid #3b82f6;">
+            <div class="panel-title">📊 Real-time Trading Signals</div>
+            <div id="signals-container" class="signals-feed">
+                <p style="color: #94a3b8; text-align: center; padding: 20px;">Waiting for trading signals...</p>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid-2">
+            <!-- Active Positions -->
+            <div class="panel">
+                <div class="panel-title">Active Positions</div>
+                <div id="active-positions-container">
+                    <p style="color: #94a3b8; text-align: center; padding: 20px;">No active positions</p>
+                </div>
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="refreshPositions()">🔄 Refresh</button>
+                </div>
+            </div>
+
+            <!-- Performance Stats -->
+            <div class="panel">
+                <div class="panel-title">Performance Metrics</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Trades</div>
+                        <div class="stat-value" id="stat-total-trades">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Win Rate</div>
+                        <div class="stat-value" id="stat-win-rate">0%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Winning Trades</div>
+                        <div class="stat-value" id="stat-winning">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Losing Trades</div>
+                        <div class="stat-value negative" id="stat-losing">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Floating P&L</div>
+                        <div class="stat-value" id="stat-floating-pnl">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Account Balance</div>
+                        <div class="stat-value" id="stat-balance">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Trades -->
+        <div class="panel" style="margin-top: 25px;">
+            <div class="panel-title">Recent Trades History</div>
+            <div id="recent-trades-container">
+                <p style="color: #94a3b8; text-align: center; padding: 20px;">No recent trades</p>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="panel" style="margin-top: 25px;">
+            <div class="panel-title">System Status</div>
+            <div id="system-status">
+                <div class="alert alert-warning">
+                    ⏳ Connecting to backend...
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>⚠️ DISCLAIMER: This bot is in PRACTICE MODE. Test thoroughly before live trading.</p>
+            <p style="margin-top: 10px; font-size: 0.9em;" id="last-update">Last updated: -</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="script_enhanced.js"></script>
+</body>
+</html>
